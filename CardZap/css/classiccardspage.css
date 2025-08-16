@@ -1,0 +1,289 @@
+/* === Base Styles === */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5dc;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 2px, transparent 2px);
+    background-size: 50px 50px, 60px 60px;
+    min-height: 100vh;
+  }
+  
+  /* === Main container === */
+  .classic-cards-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* === Header === */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .page-title {
+    color: #8b8b8b;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .timer-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .timer {
+    background: #87ceeb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .menu-btn {
+    background: none;
+    border: none;
+    color: #8b8b8b;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* === Answer areas === */
+  .answer-area-left,
+  .answer-area-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .answer-area-left { left: 0; }
+  .answer-area-right { right: 0; }
+  
+  /* === Score Indicators === */
+  .score-indicators {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8b8b;
+    font-weight: 500;
+  }
+  
+  .score-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .incorrect-icon { background: #ff69b4; }
+  .correct-icon { background: #32cd32; }
+  
+  /* === Flashcard === */
+  .flashcard-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    margin-bottom: 40px;
+  }
+  
+  .flashcard {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .flashcard.flipped { transform: rotateY(180deg); }
+  
+  .flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #8b4513;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+  }
+  
+  .flashcard-back { transform: rotateY(180deg); }
+  
+  /* === Progress Bar === */
+  .progress-bar {
+    background: #8b4513;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    color: #f5f5dc;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* === Menu Modal === */
+  .menu-modal, .score-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .menu-modal.show, .score-modal.show { 
+    display: flex; 
+}
+  
+  .menu-content {
+    background: #e0f0f0;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+    width: 90%;
+  }
+  
+  .menu-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .menu-btn-option {
+    background: #20b2aa;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-btn-option:hover { 
+    background: #1a9a94; 
+}
+  
+  /* === Score Modal === */
+  .score-content {
+    background: #20b2aa;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 350px;
+    width: 90%;
+    position: relative;
+  }
+  
+  .score-header {
+    background: #20b2aa;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    margin: -40px -40px 20px -40px;
+    color: #f5f5dc;
+  }
+  
+  .score-header .small-text { 
+    font-size: 14px; 
+    opacity: 0.8; 
+    margin-bottom: 5px; 
+}
+
+  .score-header .large-text { 
+    font-size: 32px; 
+    font-weight: bold; 
+}
+  
+  .score-details {
+    background: #e0f8f8;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .score-item-modal { 
+    text-align: center;
+}
+  
+  .score-icon-modal {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    margin: 0 auto 10px auto;
+  }
+  
+  .score-number { 
+    font-size: 24px; 
+    font-weight: bold; 
+}
+
+  .incorrect-number { 
+    color: #ff69b4; 
+}
+
+  .correct-number { 
+    color: #32cd32; 
+}
+  
+  .return-home {
+    color: #8b8b8b;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+  }  
