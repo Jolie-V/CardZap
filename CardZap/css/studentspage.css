@@ -1,0 +1,138 @@
+/* ===== BASE STYLES ===== */
+body { 
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+  }
+  
+  /* ===== LAYOUT GRID ===== */
+  .app { 
+    display: grid; 
+    grid-template-columns: 280px 1fr; 
+    grid-template-rows: auto 1fr; 
+    min-height: 100vh; 
+  }
+  
+  /* ===== SIDEBAR ===== */
+  .sidebar { 
+    grid-column: 1; 
+    grid-row: 1 / -1; 
+    background: #f0f0f0; 
+    padding: 20px; 
+    border-right: 1px solid #ccc; 
+  }
+  
+  .nav-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+  }
+  
+  .nav-item { 
+    padding: 10px 0; 
+    text-decoration: none; 
+    color: #333; 
+    display: block; 
+  }
+  
+  .nav-item:hover, .nav-item.active { 
+    background: #ddd; 
+    padding-left: 10px; 
+  }
+  
+  .logout-btn { 
+    margin-top: 20px; 
+    width: 100%; 
+    padding: 10px; 
+    background: #dc3545; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+  }
+  
+  .logo-link { 
+    color: inherit; 
+    text-decoration: none; 
+  }
+  
+  /* ===== TOPBAR ===== */
+  .topbar { 
+    grid-column: 2; 
+    grid-row: 1; 
+    background: #e0e0e0; 
+    padding: 16px 24px; 
+    border-bottom: 1px solid #ccc; 
+  }
+
+  .page-title { 
+    font-size: 24px; 
+    font-weight: bold; 
+  }
+  
+  /* ===== MAIN CONTENT ===== */
+  .content { 
+    grid-column: 2; 
+    grid-row: 2; 
+    padding: 24px; 
+    display: grid; 
+    gap: 16px; 
+    align-content: start; 
+    background: #fff; 
+  }
+  
+  /* ===== SEARCH BAR ===== */
+  .search-row { 
+    display: flex; 
+    gap: 8px; 
+    align-items: center; 
+  }
+  
+  .search-input { 
+    flex: 0 1 360px; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+  }
+
+  .search-btn { 
+    padding: 8px 12px; 
+    border: none; 
+    background: #007bff; 
+    color: white; 
+    border-radius: 4px; 
+    cursor: pointer; 
+  }
+  
+  /* ===== TABLE ===== */
+  .table-card { 
+    border: 1px solid #ccc; 
+    background: #fafafa; 
+    border-radius: 6px; 
+    overflow: hidden; 
+  }
+
+  table { 
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+
+  thead { 
+    background: #eef6f6; 
+  }
+
+  th, td { 
+    padding: 12px 16px; 
+    border-bottom: 1px solid #e5e5e5; 
+    text-align: left; 
+    font-size: 14px; 
+  }
+
+  th.small { 
+    width: 100px; 
+  }
+
+  .empty-hint { 
+    padding: 12px 16px; 
+    color: #777; 
+    font-size: 14px; 
+  }
+  
