@@ -1,0 +1,7 @@
+/* Reuse classic layout but with extra options styling */
+@import url('editclassic.css');
+
+.qa.option { background: #2f7a55; border-color: #256e4a; color: #c6f6d5; }
+.qa.option .edit-btn { background: #3b6b84; }
+
+

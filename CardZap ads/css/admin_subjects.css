@@ -1,0 +1,143 @@
+/* ===== ADMIN SUBJECTS PAGE STYLES ===== */
+/* ===== BASE STYLES ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* ===== LAYOUT GRID ===== */
+  .app {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+  }
+  
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    background: #f0f0f0;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+  }
+  
+  /* Sidebar navigation list */
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Sidebar navigation item */
+  .nav-item {
+    padding: 10px 0;
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
+  .nav-item:hover,
+  .nav-item.active {
+    background: #ddd;
+    padding-left: 10px;
+  }
+  
+  .logout-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Sidebar logo link */
+  .logo-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  /* ===== TOPBAR ===== */
+  .topbar {
+    grid-column: 2;
+    grid-row: 1;
+    background: #e0e0e0;
+    padding: 16px 24px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* ===== MAIN CONTENT ===== */
+  .content {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 24px;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    background: #fff;
+  }
+  
+  /* ===== SUBJECTS GRID ===== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
+    gap: 16px;
+    max-width: 880px;
+  }
+  
+  /* ===== SUBJECT CARD ===== */
+  .subject-card {
+    border: 1px solid #ccc;
+    background: #ffffff;
+    border-radius: 6px;
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  .subject-banner {
+    height: 60px;
+    background: url('../images/pattern.png'), #a7e3db;
+    background-size: 120px 120px;
+  }
+
+  .subject-body {
+    padding: 12px 14px 14px 14px;
+  }
+
+  .subject-name {
+    font-size: 16px;
+    color: #34495e;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+  }
+
+  .subject-sub { 
+    font-size: 12px; 
+    color: #6b7280; 
+  }
+
+  .delete-pill {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background: #ef4444;
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }  
