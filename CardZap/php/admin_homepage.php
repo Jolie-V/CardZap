@@ -1,118 +1,296 @@
+<?php
+session_start();
+require_once 'db.php';
+require_user_type(['A']);
+
+// Fetch total students from user_info table
+$total_students = 0;
+$sql = "SELECT COUNT(*) AS total FROM user_info WHERE user_type = 'S'";
+$result = $conn->query($sql);
+if ($result && $row = $result->fetch_assoc()) {
+    $total_students = $row['total'];
+}
+
+$total_teachers = 0;
+$sql = "SELECT COUNT(*) AS total FROM user_info WHERE user_type = 'T'";
+$result = $conn->query($sql);
+if ($result && $row = $result->fetch_assoc()) {
+    $total_teachers = $row['total'];
+}
+
+$total_subjects = 0;
+$sql = "SELECT COUNT(*) AS total FROM subjects";
+$result = $conn->query($sql);
+if ($result && $row = $result->fetch_assoc()) {
+    $total_subjects = $row['total'];
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CardZap • Admin Homepage</title>
+    <title>Admin Dashboard • CardZap</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/admin_homepage.css?v=2" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   
   <body>
-    <!-- ===== MAIN APPLICATION CONTAINER ===== -->
-    <div class="app">
+  <div class="app">
+    <!-- ===== LEFT SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+      <a href="admin_homepage.php" class="logo">
+        <img src="../css/CardZapLogo.png" alt="Dashboard Icon" class="logo-img" />
+        <span>CardZap</span>
+      </a>
+      </div>
       
-      <!-- ===== LEFT SIDEBAR ===== -->
-      <aside class="sidebar">
-        <!-- CardZap logo/brand -->
-        <div><a class="logo-link" href="admin_homepage.php"><strong>CardZap</strong></a></div>
-        
-        <!-- Navigation menu -->
-        <nav>
-          <ul class="nav-list">
-            <li><a class="nav-item" href="admin_students.php">Students</a></li>
-            <li><a class="nav-item" href="admin_teachers.php">Teachers</a></li>
-            <li><a class="nav-item" href="admin_subjects.php">Subjects</a></li>
-          </ul>
-        </nav>
-        
-        <!-- Logout button -->
-        <button class="logout-btn">Log out</button>
-      </aside>
+      <!-- Navigation menu -->
+      <nav>
+      <ul class="nav-list">
+        <li class="nav-item">
+        <a href="admin_homepage.php" class="nav-link active">
+          <img src="https://img.icons8.com/?size=100&id=I4wZrEpGYajn&format=png&color=f0fcfe" alt="Dashboard Icon" class="nav-icon" />
+          Dashboard
+        </a>
+        </li>
+        <li class="nav-item">
+        <a href="admin_students.php" class="nav-link">
+          <img src="https://img.icons8.com/?size=100&id=QlB1OMIqTVgl&format=png&color=f0fcfe" alt="Dashboard Icon" class="nav-icon" />
+          Students
+        </a>
+        </li>
+        <li class="nav-item">
+        <a href="admin_teachers.php" class="nav-link">
+          <img src="https://img.icons8.com/?size=100&id=I4wZrEpGYajn&format=png&color=f0fcfe" alt="Dashboard Icon" class="nav-icon" />
+          Teachers
+        </a>
+        </li>
+        <li class="nav-item">
+        <a href="admin_subjects.php" class="nav-link">
+          <img src="https://img.icons8.com/?size=100&id=DEg1RKY5gqD7&format=png&color=f0fcfe" alt="Dashboard Icon" class="nav-icon" />
+          Subjects
+        </a>
+        </li>
+      </ul>
+      </nav>
+      
+      <!-- Logout button -->
+      <div class="sidebar-footer">
+      <form action="logout.php" method="post" style="width: 100%;">
+        <button type="submit" class="btn btn-danger" style="width: 100%;">Log out</button>
+      </form>
+      </div>
+    </aside>
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-      <!-- ===== TOP HEADER BAR ===== -->
-      <header class="topbar">
-        <div class="page-title">Welcome Admin!</div>
-      </header>
+    <!-- ===== TOP HEADER BAR ===== -->
+    <header class="topbar">
+      <div class="page-title">Admin Dashboard</div>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary mobile-menu-btn" id="sidebarToggle" aria-label="Open sidebar">☰</button>
+      </div>
+    </header>
 
-      <!-- ===== MAIN CONTENT AREA ===== -->
-      <main class="content">
-        <div class="cards-row">
-          <div class="card">
-            <h3>Students</h3>
-            <div class="metric">30</div>
+    <!-- ===== MAIN CONTENT AREA ===== -->
+    <main class="content">
+      <!-- Welcome Section -->
+      <div class="welcome-section mb-6">
+        <h1>Welcome back, <?php echo htmlspecialchars($_SESSION['full_name']); ?>!</h1>
+        <p class="text-gray-600">Here's what's happening with your platform today.</p>
+      </div>
+
+      <!-- Metrics Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Total Students</h3>
+            <img src="https://img.icons8.com/?size=100&id=QlB1OMIqTVgl&format=png&color=3a728e" alt="Dashboard Icon" class="nav-icon" />
           </div>
-          <div class="card">
-            <h3>Teachers</h3>
-            <div class="metric">12</div>
-          </div>
-          <div class="card">
-            <h3>Subjects</h3>
-            <div class="metric">1</div>
+          <div class="card-body">
+            <div class="metric metric-students"><?php echo $total_students; ?></div>
+            <p class="text-sm text-gray-600">Active students</p>
           </div>
         </div>
-
-        <div class="two-col">
-          <div class="card">
-            <h3>Top Performing</h3>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th style="width: 80px;">Top</th>
-                  <th>Name</th>
-                  <th style="width: 90px; text-align:right;">Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="rank-badge">1st</span></td>
-                  <td>
-                    Juan Jose Imperial
-                    <div class="subtext">BSIT 3A</div>
-                  </td>
-                  <td class="text-right">98%</td>
-                </tr>
-                <tr>
-                  <td><span class="rank-badge">2nd</span></td>
-                  <td>
-                    Maria Mae Panganiban
-                    <div class="subtext">BSN 2C</div>
-                  </td>
-                  <td class="text-right">97%</td>
-                </tr>
-                <tr>
-                  <td><span class="rank-badge">3rd</span></td>
-                  <td>
-                    Miguel Gonzales
-                    <div class="subtext">BSED 4B</div>
-                  </td>
-                  <td class="text-right">92%</td>
-                </tr>
-                <tr>
-                  <td><span class="rank-badge">4th</span></td>
-                  <td>
-                    Sherry Joy Rosales
-                    <div class="subtext">BS Entrep 1D</div>
-                  </td>
-                  <td class="text-right">90%</td>
-                </tr>
-                <tr>
-                  <td><span class="rank-badge">5th</span></td>
-                  <td>
-                    Cassandra Salinel
-                    <div class="subtext">BSCPE 2B</div>
-                  </td>
-                  <td class="text-right">89%</td>
-                </tr>
-              </tbody>
-            </table>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Total Teachers</h3>
+            <img src="https://img.icons8.com/?size=100&id=I4wZrEpGYajn&format=png&color=3a728e" alt="Dashboard Icon" class="nav-icon" />
+          </div>
+          <div class="card-body">
+            <div class="metric metric-teachers"><?php echo $total_teachers; ?></div>
+            <p class="text-sm text-gray-600">Active teachers</p>
           </div>
         </div>
-      </main>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Total Subjects</h3>
+            <img src="https://img.icons8.com/?size=100&id=DEg1RKY5gqD7&format=png&color=3a728e" alt="Dashboard Icon" class="nav-icon" />
+          </div>
+          <div class="card-body">
+            <div class="metric metric-subjects"><?php echo $total_subjects; ?></div>
+            <p class="text-sm text-gray-600">Active subjects</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Performing Students -->
+      <!--
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Top Performing Students</h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+          <th style="width: 80px;">Rank</th>
+          <th>Student Name</th>
+          <th>Course</th>
+          <th style="width: 100px; text-align:right;">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            // Fetch top 5 students by score (assuming you have a 'score' column)
+            // Adjust the query as needed for your schema
+            $sql = "SELECT full_name, e_mail, course 
+            FROM user_info 
+            WHERE user_type = 'S' 
+            ORDER BY score DESC 
+            LIMIT 5";
+            $result = $conn->query($sql);
+            $ranks = ['1st', '2nd', '3rd', '4th', '5th'];
+            $rank_class = ['rank-1', 'rank-2', 'rank-3', '', ''];
+            $i = 0;
+            if ($result && $result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            $rank = isset($ranks[$i]) ? $ranks[$i] : ($i+1) . 'th';
+            $class = isset($rank_class[$i]) ? $rank_class[$i] : '';
+            echo '<tr>';
+            echo '<td><span class="rank-badge ' . $class . '">' . $rank . '</span></td>';
+            echo '<td>
+                <div class="student-info">
+              <div class="student-name">' . htmlspecialchars($row['full_name']) . '</div>
+              <div class="student-email">' . htmlspecialchars($row['email']) . '</div>
+                </div>
+              </td>';
+            echo '<td>' . htmlspecialchars($row['course']) . '</td>';
+            echo '<td class="text-right"><span class="score">' . htmlspecialchars($row['score']) . '%</span></td>';
+            echo '</tr>';
+            $i++;
+          }
+            } else {
+          echo '<tr><td colspan="4" class="text-center">No student data available.</td></tr>';
+            }
+            ?>
+          </tbody>
+        </table>
+          </div>
+        </div>
+      </div>
+      -->
+        <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Top Performing Students</h3>
     </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Rank</th>
+              <th>Student Name</th>
+              <th>Course</th>
+              <th style="width: 100px; text-align:right;">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank-badge rank-1">1st</span></td>
+              <td>
+                <div class="student-info">
+                  <div class="student-name">Alice Johnson</div>
+                  <div class="student-email">alice.johnson@email.com</div>
+                </div>
+              </td>
+              <td>Mathematics</td>
+              <td class="text-right"><span class="score">98%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge rank-2">2nd</span></td>
+              <td>
+                <div class="student-info">
+                  <div class="student-name">Bob Smith</div>
+                  <div class="student-email">bob.smith@email.com</div>
+                </div>
+              </td>
+              <td>Physics</td>
+              <td class="text-right"><span class="score">95%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge rank-3">3rd</span></td>
+              <td>
+                <div class="student-info">
+                  <div class="student-name">Carol Lee</div>
+                  <div class="student-email">carol.lee@email.com</div>
+                </div>
+              </td>
+              <td>Chemistry</td>
+              <td class="text-right"><span class="score">93%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">4th</span></td>
+              <td>
+                <div class="student-info">
+                  <div class="student-name">David Kim</div>
+                  <div class="student-email">david.kim@email.com</div>
+                </div>
+              </td>
+              <td>Biology</td>
+              <td class="text-right"><span class="score">91%</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">5th</span></td>
+              <td>
+                <div class="student-info">
+                  <div class="student-name">Eva Green</div>
+                  <div class="student-email">eva.green@email.com</div>
+                </div>
+              </td>
+              <td>English</td>
+              <td class="text-right"><span class="score">89%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+        </main>
+      </div>
 
-    <!-- JS -->
-    <script src="../javascript/admin_homepage.js?v=2"></script>
-  </body>
+  <!-- JS -->
+  <script src="../javascript/main.js">
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  sidebarToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+    sidebarOverlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+  });
+
+  sidebarOverlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
+    sidebarOverlay.style.display = 'none';
+  });
+</script>
+</body>
 </html>

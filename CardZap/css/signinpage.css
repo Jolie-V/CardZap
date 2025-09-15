@@ -14,41 +14,64 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-               "Apple Color Emoji", "Segoe UI Emoji";
-  background: var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
 }
 
-.wrap {
-  min-height: 100%;
+body {
+  background-image: linear-gradient(rgba(92,147,170,0.5), rgba(92,147,170,0.5)), url("DarkLight.png");
+  background-size: cover;
+  background-color: #5c93aa;
   display: grid;
   place-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
   padding: 24px;
 }
 
+
 .card {
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
+  padding: 32px;
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.08),
     0 4px 6px -4px rgba(0, 0, 0, 0.06);
 }
 
 .title {
-  margin: 0 0 16px;
-  font-size: 20px;
+  margin: 0 0 24px;
+  font-size: 24px;
   text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .field {
   display: grid;
   gap: 6px;
-  margin-bottom: 12px;
 }
 
 label {
@@ -56,22 +79,23 @@ label {
   color: var(--muted);
 }
 
-input {
+input,
+select {
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 14px;
+  width: 100%;
 }
 
 .user-type-field {
-  display: grid;
-  gap: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .user-type-options {
   display: flex;
   gap: 12px;
+  margin-top: 6px;
 }
 
 .user-type-option {
@@ -105,7 +129,7 @@ input {
 .actions {
   display: grid;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
 .btn {
@@ -113,7 +137,7 @@ input {
   border: 1px solid var(--primary);
   background: var(--primary);
   color: #fff;
-  padding: 10px 14px;
+  padding: 12px 14px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -137,29 +161,4 @@ input {
 .link a {
   color: var(--primary);
   text-decoration: none;
-}
-
-.topnav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-}
-
-.brand {
-  font-weight: 700;
-}
-
-.home-link {
-  text-decoration: none;
-  color: var(--text);
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
 }

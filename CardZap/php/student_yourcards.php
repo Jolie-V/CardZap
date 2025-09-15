@@ -4,46 +4,75 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your Cards • CardZap</title>
-    <link rel="stylesheet" href="../css/student_yourcards.css?v=2" />
+    <link rel="stylesheet" href="../css/student_yourcards.css" />
+    <link rel="stylesheet" href="../css/main.css" />
     <script src="../javascript/student_yourcards.js" defer></script>
   </head>
   <body>
     <!-- Main Application Container -->
     <div class="app">
-      <!-- Navigation Sidebar -->
-      <aside class="sidebar">
-        <!-- Brand Logo -->
-        <div><strong>CardZap</strong></div>
-        
-        <!-- Navigation Menu -->
-        <nav>
-          <ul class="nav-list">
-            <li><a class="nav-item" href="student_profile.php">Profile</a></li>
-            <li><a class="nav-item" href="student_friends.php">Friends</a></li>
-            <li><a class="nav-item active" href="student_yourcards.php">Your Cards</a></li>
-            <li><a class="nav-item" href="student_enrolled.php">Enrolled Subjects</a></li>
-            <li><a class="nav-item" href="student_settings.php">Settings</a></li>
-          </ul>
-        </nav>
-        
-        <!-- Logout Button -->
-        <button class="logout-btn">Log out</button>
-      </aside>
+          <!-- ===== LEFT SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="admin_homepage.php" class="logo">
+          <img src="../css/CardZapLogo.png" alt="Dashboard Icon" class="logo-img" />
+          <span>CardZap</span>
+        </a>
+      </div>
+      
+      <!-- Navigation menu -->
+      <nav>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="student_profile.php" class="nav-link">
+              <img src="https://img.icons8.com/?size=100&id=QlB1OMIqTVgl&format=png&color=f0fcfe" alt="Profile" class="nav-icon" />
+              Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="student_yourcards.php" class="nav-link">
+              <img src="https://img.icons8.com/?size=100&id=04GSmQqf0WPl&format=png&color=f0fcfe" alt="YourCards" class="nav-icon" />
+              Your Cards
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="student_friends.php" class="nav-link">
+              <img src="https://img.icons8.com/?size=100&id=W0yStnm1ahyh&format=png&color=f0fcfe" alt="Friends" class="nav-icon" />
+              Friends
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="student_enrolled.php" class="nav-link">
+              <img src="https://img.icons8.com/?size=100&id=ssqfwv5zvoTR&format=png&color=f0fcfe" alt="Enrolled" class="nav-icon" />
+              Enrolled Subjects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="student_settings.php" class="nav-link">
+              <img src="https://img.icons8.com/?size=100&id=yku81UQEXoew&format=png&color=f0fcfe" alt="Settings" class="nav-icon" />
+              Settings
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- Logout button -->
+      <div class="sidebar-footer">
+      <form action="logout.php" method="post" style="width: 100%;">
+        <button type="submit" class="btn btn-danger" style="width: 100%;">Log out</button>
+      </form>
+      </div>
+    </aside>
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-      <!-- Top Navigation Header -->
-      <header class="topbar">
-        <!-- Page Title -->
-        <div class="page-title">Your Cards</div>
-        
-        <!-- Notification System -->
-        <div class="notification-container">
-          <button class="notification-btn">🔔</button>
-          <div class="notification-popup">
-            <div class="notification-header">Notifications</div>
-            <div class="notification-content">No new notifications.</div>
-          </div>
-        </div>
-      </header>
+        <!-- ===== TOP HEADER BAR ===== -->
+    <header class="topbar">
+      <div class="page-title">Your Cards</div>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary mobile-menu-btn" id="sidebarToggle" aria-label="Open sidebar">☰</button>
+      </div>
+    </header>
 
       <!-- Main Content Area -->
       <main class="content">
