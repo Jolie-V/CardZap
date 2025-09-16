@@ -1,0 +1,462 @@
+/* === Base Styles === */
+html { height: 100%; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5dc;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 2px, transparent 2px);
+    background-size: 50px 50px, 60px 60px;
+    min-height: 100vh;
+  }
+  
+  /* === Main container === */
+  .classic-cards-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px 16px 16px;
+    min-height: calc(100vh - 0px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* === Header === */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    position: relative;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .timer {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .score {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .score-label {
+    color: #666;
+  }
+  
+  .score-value {
+    background: #e8f4fd;
+    color: #1e40af;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    min-width: 24px;
+    text-align: center;
+  }
+  
+  .incorrect .score-value {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+  
+  .menu-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .menu-btn:hover {
+    background: #2563eb;
+  }
+  
+  /* === Progress Bar === */
+  .progress-bar {
+    background: #e5e7eb;
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    background: #3b82f6;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  
+  /* === Card Area === */
+  .card-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 400px;
+  }
+  
+  .flashcard {
+    width: 350px;
+    height: 250px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+    transform-origin: center;
+    will-change: transform;
+    transform: rotateY(0deg);
+  }
+  
+  .flashcard.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 500;
+    user-select: none;
+    touch-action: none;
+  }
+  
+  .flashcard-face.front {
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+    color: #8b4513;
+  }
+  
+  .flashcard-face.back {
+    background: linear-gradient(135deg, #57cc99 0%, #38a169 100%);
+    color: #0c2e22;
+    transform: rotateY(180deg);
+  }
+  
+  /* === Answer Areas === */
+  .answer-area-left,
+  .answer-area-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: transparent;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .answer-area-left {
+    left: 0;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%);
+  }
+  
+  .answer-area-right {
+    right: 0;
+    background: linear-gradient(270deg, rgba(34, 197, 94, 0.1) 0%, transparent 100%);
+  }
+  
+  .answer-area-left.ready-for-scoring {
+    color: #dc2626;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.2) 0%, transparent 100%);
+  }
+  
+  .answer-area-right.ready-for-scoring {
+    color: #16a34a;
+    background: linear-gradient(270deg, rgba(34, 197, 94, 0.2) 0%, transparent 100%);
+  }
+  
+  .answer-area-left.needs-flip {
+    color: #f59e0b;
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.2) 0%, transparent 100%);
+  }
+  
+  .answer-area-right.needs-flip {
+    color: #f59e0b;
+    background: linear-gradient(270deg, rgba(245, 158, 11, 0.2) 0%, transparent 100%);
+  }
+  
+  .answer-area-left.ready-for-scoring::before {
+    content: "WRONG";
+  }
+  
+  .answer-area-right.ready-for-scoring::before {
+    content: "CORRECT";
+  }
+  
+  .answer-area-left.needs-flip::before {
+    content: "FLIP FIRST";
+  }
+  
+  .answer-area-right.needs-flip::before {
+    content: "FLIP FIRST";
+  }
+  
+  /* === Visual Feedback States === */
+  .flashcard.ready-for-scoring {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+  }
+  
+  .flashcard.needs-flip {
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+  }
+  
+  /* === Shake Animation === */
+  .flashcard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .flashcard.shake::before {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  /* === Modals === */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .modal h2 {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .modal p {
+    margin: 0 0 25px 0;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  
+  .modal-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  
+  .modal-btn.primary {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .modal-btn.primary:hover {
+    background: #2563eb;
+  }
+  
+  .modal-btn.secondary {
+    background: #f3f4f6;
+    color: #374151;
+  }
+  
+  .modal-btn.secondary:hover {
+    background: #e5e7eb;
+  }
+  
+  .modal-btn.danger {
+    background: #ef4444;
+    color: white;
+  }
+  
+  .modal-btn.danger:hover {
+    background: #dc2626;
+  }
+  
+  /* === Score Modal === */
+  .score-modal .modal-content {
+    max-width: 500px;
+  }
+  
+  .score-display {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+  
+  .score-item-final {
+    text-align: center;
+  }
+  
+  .score-item-final .score-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .score-item-final .score-value {
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    color: #1e40af;
+  }
+  
+  .score-item-final.incorrect .score-value {
+    color: #dc2626;
+  }
+  
+  /* === Responsive Design === */
+  @media (max-width: 768px) {
+    .classic-cards-container {
+      padding: 16px 12px;
+    }
+    
+    .header {
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+    }
+    
+    .header-left,
+    .header-right {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .flashcard {
+      width: 300px;
+      height: 200px;
+    }
+    
+    .flashcard-face {
+      font-size: 14px;
+      padding: 16px;
+    }
+    
+    .modal-content {
+      padding: 20px;
+      margin: 20px;
+    }
+    
+    .modal-buttons {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .flashcard {
+      width: 280px;
+      height: 180px;
+    }
+    
+    .flashcard-face {
+      font-size: 13px;
+      padding: 12px;
+    }
+    
+    .score {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+  
+  /* === Utility Classes === */
+  .no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }

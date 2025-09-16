@@ -1,0 +1,169 @@
+/* ===== ADMIN TEACHERS PAGE STYLES ===== */
+/* Structured comments mirror other admin pages for readability. */
+/* Base layout mirrors admin_subjects.css */
+/* === Base Page Styles === */
+body { 
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+}
+
+/* === App Grid Layout === */
+.app { 
+    display: grid; 
+    grid-template-columns: 280px 1fr; 
+    grid-template-rows: auto 1fr; 
+    min-height: 100vh; 
+}
+
+/* === Sidebar Navigation === */
+.sidebar { 
+    grid-column: 1; 
+    grid-row: 1 / -1; 
+    background: #f0f0f0; 
+    padding: 20px; 
+    border-right: 1px solid #ccc; 
+}
+
+/* Sidebar logo link */
+.logo-link { 
+    color: inherit; 
+    text-decoration: none; 
+}
+
+/* Sidebar nav list */
+.nav-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+/* Sidebar nav item */
+.nav-item { 
+    padding: 10px 0; 
+    text-decoration: none; 
+    color: #333; 
+    display: block; 
+}
+
+.nav-item:hover, .nav-item.active { 
+    background: #ddd; 
+    padding-left: 10px; 
+}
+
+/* Sidebar logout button */
+.logout-btn { 
+    margin-top: 20px; 
+    width: 100%; 
+    padding: 10px; 
+    background: #dc3545; 
+    color: #fff; 
+    border: none; 
+    cursor: pointer; 
+}
+
+/* === Top Bar === */
+.topbar { 
+    grid-column: 2; 
+    grid-row: 1; 
+    background: #e0e0e0; 
+    padding: 16px 24px; 
+    border-bottom: 1px solid #ccc; 
+    display:flex; align-items:center; 
+    justify-content: space-between; 
+}
+
+/* Top bar title */
+.page-title { 
+    font-size: 24px; 
+    font-weight: bold; 
+}
+
+/* Top bar search input */
+.topbar .search-input { 
+    height: 32px; 
+    padding: 0 10px; 
+    width: 320px; 
+}
+
+/* === Button Styles === */
+.btn { 
+    height: 32px; 
+    padding: 0 12px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 4px; 
+}
+
+.btn-secondary { 
+    background: #6b7280; 
+    color: #fff; 
+}
+
+.btn-accept { 
+    background: #22c55e; 
+    color: #fff; 
+}
+.btn-remove { 
+    background: #ef4444; 
+    color: #fff; 
+}
+
+.btn-profile { 
+    background: #4b6b84; 
+    color: #fff; 
+}
+
+/* === Main Content Area === */
+.content { 
+    grid-column: 2; 
+    grid-row: 2; 
+    padding: 24px; 
+    background: #fff; 
+}
+
+/* === Panels === */
+.panel { 
+    background: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    padding: 14px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06); 
+}
+
+.panel h4 { 
+    margin: 6px 0 10px 0; 
+    color: #2d3748; 
+}
+
+.panel .mt { margin-top: 14px; }
+
+/* === Teacher List Layout === */
+.list { 
+    display: grid; 
+    gap: 10px; 
+}
+
+.row { 
+    display: grid; 
+    grid-template-columns: auto 1fr auto auto; 
+    gap: 10px; 
+    align-items: center; 
+    padding: 10px; 
+    border: 1px solid #e5e7eb; 
+    border-radius: 6px; 
+    background: #f9fafb; 
+}
+
+/* Avatar chip */
+.avatar { 
+    width: 20px; 
+    height: 20px; 
+    background: #3b6b82; 
+    border-radius: 4px; 
+}
+
+/* Name text */
+.name { 
+    font-weight: 600; 
+    color: #1f2937; 
+}
