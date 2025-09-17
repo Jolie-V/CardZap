@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline • CardZap</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .offline-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: var(--spacing-4);
+        }
+        
+        .offline-content {
+            text-align: center;
+            background: white;
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-xl);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .offline-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .offline-message {
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .retry-btn {
+            margin-top: var(--spacing-4);
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-content">
+            <div class="offline-icon">📶</div>
+            <h1 class="offline-title">You're Offline</h1>
+            <p class="offline-message">
+                It looks like you've lost your internet connection. 
+                Don't worry, you can still access your cached content.
+            </p>
+            
+            <div class="offline-actions">
+                <button class="btn btn-primary retry-btn" onclick="window.location.reload()">
+                    Try Again
+                </button>
+            </div>
+            
+            <div class="offline-tips">
+                <h3>What you can do:</h3>
+                <ul style="text-align: left; margin-top: var(--spacing-4);">
+                    <li>Review previously loaded flashcards</li>
+                    <li>Check your internet connection</li>
+                    <li>Try refreshing the page</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check for network connection
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Auto-retry every 30 seconds
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
